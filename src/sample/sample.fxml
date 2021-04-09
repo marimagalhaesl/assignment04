@@ -38,7 +38,7 @@
          <font>
             <Font size="12.0" />
          </font></Label>
-      <ListView fx:id="listView" layoutX="320.0" layoutY="111.0" onEditStart="#HandleListView" prefHeight="341.0" prefWidth="466.0" />
+      <ListView fx:id="listView" layoutX="320.0" layoutY="111.0" prefHeight="341.0" prefWidth="466.0" />
       <RadioButton fx:id="airlineRadioBtn" layoutX="234.0" layoutY="70.0" mnemonicParsing="false" onAction="#HandleAirlineRadioBtn" text="Airline" />
       <RadioButton fx:id="airlineNumRadioBtn" layoutX="342.0" layoutY="70.0" mnemonicParsing="false" onAction="#HandleAirlineNumRadioBtn" text="Airline Number" />
       <RadioButton fx:id="departureRadioBtn" layoutX="480.0" layoutY="70.0" mnemonicParsing="false" onAction="#HandleDepartureRadioBtn" text="Departure Airport" />
@@ -46,6 +46,6 @@
       <ChoiceBox fx:id="airlineChoiceBox" layoutX="115.0" layoutY="129.0" prefHeight="26.0" prefWidth="190.0" />
       <ChoiceBox fx:id="airlineNumChoiceBox" layoutX="115.0" layoutY="200.0" prefHeight="26.0" prefWidth="190.0" />
       <ChoiceBox fx:id="departureChoiceBox" layoutX="115.0" layoutY="273.0" prefHeight="26.0" prefWidth="190.0" />
-      <ChoiceBox fx:id="arrivalChoiceBox" layoutX="115.0" layoutY="348.0" onMouseClicked="#HandleArrivalChoiceBox" prefHeight="26.0" prefWidth="190.0" />
+      <ChoiceBox fx:id="arrivalChoiceBox" layoutX="115.0" layoutY="348.0" prefHeight="26.0" prefWidth="190.0" />
    </children>
 </AnchorPane>
