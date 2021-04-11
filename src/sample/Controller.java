@@ -188,6 +188,7 @@ public class Controller implements Initializable {
 
     private String choice;
 
+
     public void HandleSearchBtn(){
         listView.getItems().clear();
         listView.getItems().add("\t Airline \t\t\t\t AirlineNo \t\t\t\t Departure \t\t\t\t Arrival");
@@ -198,10 +199,14 @@ public class Controller implements Initializable {
             while (myReader.hasNextLine()) {
                 String data = myReader.nextLine();
                 String[] token = data.split(",");
+                
                 if (choice.equals(token[0]) || choice.equals(token[1]) || choice.equals(token[2]) || choice.equals(token[3])) {
-                    listView.getItems().add("\t" + token[0] + "\t\t\t\t" + token[1] + "\t\t\t\t" + token[2] + "\t\t\t\t\t" + token[3]);
+                        listView.getItems().add("\t" + token[0] + "\t\t\t\t" + token[1] + "\t\t\t\t" + token[2] + "\t\t\t\t\t" + token[3]);
+                    }
+
+
                 }
-            }
+
             myReader.close();
 
         } catch (FileNotFoundException e) {
@@ -230,7 +235,9 @@ public class Controller implements Initializable {
 
         arrivalChoiceBox.setValue("Select Arrival Airport");
 
+
         listView.getItems().add("\t Airline \t\t\t\t AirlineNo \t\t\t\t Departure \t\t\t\t Arrival");
+
 
         airlineChoiceBox.getSelectionModel().selectedItemProperty().addListener((v, ov, nv) -> choice = new String(nv.toString()));
         airlineNumChoiceBox.getSelectionModel().selectedItemProperty().addListener((v, ov, nv) -> choice = new String(nv.toString()));
