@@ -31,13 +31,15 @@ public class Controller implements Initializable {
     @FXML private Button closeBtn;
     @FXML private ListView listView;
 
-    //auxiliary variables
+    //auxiliary variable
     private ObservableList<String> cBItem;
 
     public void HandleAirlineRadioBtn(){
 
+        //cleaning items before user chooses again
         airlineChoiceBox.getItems().clear();
 
+        //letting only the selected radio button working with the respective choicebox
         airlineNumRadioBtn.setSelected(false);
         departureRadioBtn.setSelected(false);
         arrivalRadioBtn.setSelected(false);
@@ -48,11 +50,13 @@ public class Controller implements Initializable {
         arrivalChoiceBox.setDisable(true);
 
         try {
+            //reading file
             File myObj = new File("/Users/marianamagalhaes/Desktop/assignment04/src/sample/Flight.txt");
             Scanner myReader = new Scanner(myObj);
+
             ArrayList<String> aL = new ArrayList<>();
 
-
+           //retrieving information from file and splitting in tokens
             while (myReader.hasNextLine()) {
                 String data = myReader.nextLine();
                 String[] token = data.split(",");
@@ -60,8 +64,10 @@ public class Controller implements Initializable {
             }
 
             List<String> aList = aL.stream().distinct().collect(Collectors.toList());
+            //adding information in file to observable list
             cBItem = FXCollections.observableArrayList(aList);
 
+            //adding items to choicebox
             airlineChoiceBox.getItems().addAll(cBItem);
 
             myReader.close();
@@ -191,6 +197,7 @@ public class Controller implements Initializable {
 
     public void HandleSearchBtn(){
         listView.getItems().clear();
+        //adding header to listview
         listView.getItems().add("\t Airline \t\t\t\t AirlineNo \t\t\t\t Departure \t\t\t\t Arrival");
 
         try {
@@ -199,7 +206,8 @@ public class Controller implements Initializable {
             while (myReader.hasNextLine()) {
                 String data = myReader.nextLine();
                 String[] token = data.split(",");
-                
+
+                //adding tokens in listview according to chosen one
                 if (choice.equals(token[0]) || choice.equals(token[1]) || choice.equals(token[2]) || choice.equals(token[3])) {
                         listView.getItems().add("\t" + token[0] + "\t\t\t\t" + token[1] + "\t\t\t\t" + token[2] + "\t\t\t\t\t" + token[3]);
                     }
@@ -224,6 +232,7 @@ public class Controller implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
 
+        //setting initial values to choicebox
         airlineChoiceBox.setValue("Select Airline");
 
 
@@ -235,10 +244,10 @@ public class Controller implements Initializable {
 
         arrivalChoiceBox.setValue("Select Arrival Airport");
 
-
+        //header of listview
         listView.getItems().add("\t Airline \t\t\t\t AirlineNo \t\t\t\t Departure \t\t\t\t Arrival");
 
-
+        //choice as a new string according to value selected in choicebox
         airlineChoiceBox.getSelectionModel().selectedItemProperty().addListener((v, ov, nv) -> choice = new String(nv.toString()));
         airlineNumChoiceBox.getSelectionModel().selectedItemProperty().addListener((v, ov, nv) -> choice = new String(nv.toString()));
         departureChoiceBox.getSelectionModel().selectedItemProperty().addListener((v, ov, nv) -> choice = new String(nv.toString()));
